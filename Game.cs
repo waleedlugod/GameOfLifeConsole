@@ -39,6 +39,8 @@ namespace GameOfLife
 
                 board.Add(tempRows);
             }
+            
+            textIn.Close();
 
             return board;
         }
