@@ -1,35 +1,65 @@
 using System;
+using System.Collections.Generic;
 using System.Threading;
+using System.IO;
 
 namespace GameOfLife
 {
     static class Game
     {
-        private const int X = 15;
-        private const int Y = 15;
-        private static bool[,] board = new bool[X, Y];
+        private static List<List<bool>> board = new List<List<bool>>();
 
         
+        public static List<List<bool>> Load(string fileName)
+        {
+            TextReader textIn = new StreamReader(fileName);
+            string text;
+            int row = -1;
+            
+            while ((text = textIn.ReadLine()) != null)
+            {
+                char[] cells = text.ToCharArray();
+                List<bool> tempRows = new List<bool>();
+                row++;
+
+                foreach (char cell in cells)
+                {
+                    switch (cell)
+                    {
+                        case '.':
+                            tempRows.Add(false);
+                            break;
+                        case 'x':
+                            tempRows.Add(true);
+                            break;
+                        default:
+                            break;
+                    }
+                }
+
+                board.Add(tempRows);
+            }
+
+            return board;
+        }
         public static void Draw()
         {
             string str = "";
             
-            for (int y = 0; y < Y; y++)
+            for (int y = 0; y < board.Count; y++)
             {
-                for (int x = 0; x < X; x++)
+                for (int x = 0; x < board[y].Count; x++)
                 {
-                    if (Board[x, y])
+                    if (board[y][x])
                     {
                         // Alive
-                        str += "#";
+                        str += "# ";
                     }
                     else
                     {
                         // Dead
-                        str += ".";
+                        str += ". ";
                     }
-
-                    str += " ";
                 }
                 str += "\n";
             }
@@ -45,25 +75,34 @@ namespace GameOfLife
 
         public static void Update()
         {
-            bool[,] tempBoard = (bool[,]) Board.Clone();
-            for (int y = 0; y < Y; y++)
+            List<List<bool>> tempBoard = new List<List<bool>>();
+
+            // Copies board to temporary board
+            // since we need to change the whole board
+            // at the same time not cell by cell
+            foreach (List<bool> row in board)
             {
-                for (int x = 0; x < X; x++)
+                tempBoard.Add(new List<bool>(row));
+            }  
+
+            for (int y = 0; y < board.Count; y++)
+            {
+                for (int x = 0; x < board[y].Count; x++)
                 {
                     int liveCells = NeighborCellsCount(x, y);
 
                     if (liveCells < 2 || liveCells > 3)
                     {
-                        tempBoard[x, y] = false;
+                        tempBoard[y][x] = false;
                     }
                     else if (liveCells == 3)
                     {
-                        tempBoard[x, y] = true;
+                        tempBoard[y][x] = true;
                     }
                 }
             }
 
-            Board = tempBoard;
+            board = tempBoard;
         }
 
         static int NeighborCellsCount(int x, int y)
@@ -73,12 +112,16 @@ namespace GameOfLife
             {
                 for (int j = -1; j < 2; j++)
                 {
-                    // If inside bounds
-                    if ((x + j >= 0) && (y + i >= 0) && (x + j <= X - 1) && (y + i <= Y - 1))
+                    // If cell is not itself
+                    if (!(i == 0 && j == 0))
                     {
-                        if (!(i == 0 && j == 0))
+                        if ((x + j >= 0) // To the right of the leftmost boundary
+                            && (x + j < board[y].Count) // To the left of the rightmost boundary
+                            && (y + i >= 0) // Lower than the uppermost boundary
+                            && (y + i < board.Count)) // Higher than the lowermost boundary)
                         {
-                            if (Board[x + j, y + i])
+                            // If current cell is alive
+                            if (board[y + i][x + j])
                             {
                                 livingCells++;
                             }
@@ -88,12 +131,6 @@ namespace GameOfLife
             }
 
             return livingCells;
-        }
-
-        public static bool[,] Board
-        {
-            get {return board;}
-            set {board = value;}
         }
     }
 }
