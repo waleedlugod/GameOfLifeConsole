@@ -12,8 +12,6 @@ namespace GameOfLife
         
         public static void Draw()
         {
-            Console.CursorVisible = false;
-            Console.SetCursorPosition(0, 0);
             string str = "";
             
             for (int y = 0; y < Y; y++)
@@ -36,7 +34,10 @@ namespace GameOfLife
                 str += "\n";
             }
 
+            Console.SetCursorPosition(0, 0);
+            Console.CursorVisible = false;
             Console.Clear();
+            
             Console.WriteLine(str);
 
             Thread.Sleep(1000);
