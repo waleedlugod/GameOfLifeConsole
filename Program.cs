@@ -8,7 +8,7 @@ namespace GameOfLife
     {
         static void Main(string[] args)
         {
-            Game.Load("Board.txt");
+            Game.Load(Path.GetFullPath("Board.txt"));
 
             while (true)
             {
