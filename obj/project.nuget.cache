@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "/nb/oxAauZ9mPBdCDyBx0LuTNWA5Rh7HTZWPvTcAekFxsC7sRcqxdX+UIX6jEQ3pJNa0LBajfK/PX4ppjQRVYQ==",
+  "dgSpecHash": "+mFaRrmMaaY8brk4UurKwB0TtCqXBHUMA24XbT+1+tld/ayCicQIu/FbLEqw07gSlP1Lm3EIYirZ7VdZQrslTg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\lugod\\source\\repos\\GameOfLife\\GameOfLife.csproj",
+  "projectFilePath": "C:\\Users\\lugod\\source\\repos\\GameOfLife\\GameOfLife\\GameOfLife.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }

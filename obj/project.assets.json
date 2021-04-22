@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\lugod\\source\\repos\\GameOfLife\\GameOfLife.csproj",
+      "projectUniqueName": "C:\\Users\\lugod\\source\\repos\\GameOfLife\\GameOfLife\\GameOfLife.csproj",
       "projectName": "GameOfLife",
-      "projectPath": "C:\\Users\\lugod\\source\\repos\\GameOfLife\\GameOfLife.csproj",
+      "projectPath": "C:\\Users\\lugod\\source\\repos\\GameOfLife\\GameOfLife\\GameOfLife.csproj",
       "packagesPath": "C:\\Users\\lugod\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\lugod\\source\\repos\\GameOfLife\\obj\\",
+      "outputPath": "C:\\Users\\lugod\\source\\repos\\GameOfLife\\GameOfLife\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\lugod\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -60,7 +60,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.201\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.202\\RuntimeIdentifierGraph.json"
       }
     }
   }
